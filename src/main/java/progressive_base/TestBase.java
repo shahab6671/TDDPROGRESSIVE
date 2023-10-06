@@ -6,6 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.AfterMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -28,17 +29,18 @@ public class TestBase {
 		config = new ReadConfig();
 
 	}
-
+    // browser parameter will come from testng suite or runtime
+	// @Optional("chrome") will take care in case we miss browser param value
 	@Parameters(BROWSER)
 	@BeforeMethod
-	public void setUpDrive(String browserName) {
+	public void setUpDrive(@Optional (CHROME) String browserName) {
 		WebDriverManager.chromiumdriver().setup();
 		driver = initializingBrowser(browserName);
-		// driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		int pageLoadTime = Integer.parseInt(config.getValue(KeyConfig.pageLoadTime));
-		int implicitWaitTIme = Integer.parseInt(config.getValue(KeyConfig.impliciteWaitLoad));
+		int implicitWaitTime = Integer.parseInt(config.getValue(KeyConfig.impliciteWaitLoad));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTime));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWaitTIme));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWaitTime));
 		driver.get(config.getValue(KeyConfig.url));
 		initObjectClass();
 
@@ -69,7 +71,7 @@ public class TestBase {
 
 	@AfterMethod
 	public void tearUp() {
-		//driver.quit();
+	driver.quit();
 	}
 
 }

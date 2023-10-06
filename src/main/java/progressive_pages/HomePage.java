@@ -1,12 +1,11 @@
 package progressive_pages;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-
+import progressive_constants.Attribute;
 
 import static progressive_common.CommonAction.*;
 
@@ -15,86 +14,78 @@ public class HomePage {
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-
-	@FindBy(id = "zipCode_mma")
+	@FindBy(xpath = "//div[@class='intro centered']/h1")
+	WebElement titleText;
+	@FindBy(xpath = "//p[text()='Take a road trip to Savingsville']")
+	WebElement subTitleText;
+	@FindBy(css = ".copy.h4-style.centered")
+	WebElement footterText;
+	@FindBy(xpath= "(//p[@class='text block-link is-simple bounce'])[3]")
+	WebElement auto;
+	@FindBy(xpath = "//input[@id='zipCode_overlay']")
 	WebElement zipCodeField;
 	@FindBy(xpath = ("//input[@id='qsButton_mma']"))
 	WebElement getQuot;
-	@FindBy(id = "NameAndAddressEdit_embedded_questions_list_FirstName")
-	WebElement firstName;
-	@FindBy(id= "NameAndAddressEdit_embedded_questions_list_LastName")
-	WebElement lastName;
-	@FindBy(id ="NameAndAddressEdit_embedded_questions_list_DateOfBirth")
-	WebElement dateOfBirth;
-	@FindBy(id = "NameAndAddressEdit_embedded_questions_list_MailingAddress")
-	WebElement stNumberName;
-	@FindBy(id = "NameAndAddressEdit_embedded_questions_list_ApartmentUnit")
-	WebElement apt;
-	@FindBy(id ="NameAndAddressEdit_embedded_questions_list_City")
-	WebElement cityName;
-	@FindBy(id ="NameAndAddressEdit_embedded_questions_list_MailingZipType")
-	WebElement poBox;
-	@FindBy(xpath = "//button[text()='Okay, start my quote.']")
-	WebElement okeyStartMyQoute;
-	@FindBy(xpath = "//a[@data-tracking-label='auto_section']")
-	WebElement autoLobElement;
-	@FindBy(id = "zipCode_overlay")
-	WebElement zipCodeAltElement;
-	@FindBy(id = "qsButton_overlay")
-	WebElement getQuoteOverlayElement;
-
-	public void inputZipCode(String zipcode) {
-		try {
-			inputThrowsNoSuchElementrException(zipCodeField, zipcode);
-		}catch (NoSuchElementException e) {
-			click(autoLobElement);
-			input(zipCodeAltElement, zipcode);
-		}
+	@FindBy()
+	WebElement maxLength;
+	@FindBy(xpath ="//span[@id='zipCode_overlay-error']")
+	WebElement errorMsgText;
+	
+	@FindBy(xpath = "//a[@class='logo']")
+	WebElement homePageText;
+	
+	public void verifyTitleText(String expectedString ) {
+          verifyText(titleText, expectedString);		
+		//verifyAttribute(titleText, expectedString, Attribute.INNER_HTML);
+	}
+	
+	public void verifySubTitleText(String expectedString ) {
+		//verifyText(subTitleText, expectedString);
+		verifyAttribute(subTitleText, expectedString, Attribute.INNER_HTML);
+	
+	}
+	public void verifyFootterText(String expectedString) {
+		//verifyText(footterText, expectedString);
+		verifyAttribute(footterText, expectedString, Attribute.INNER_HTML);
+	}
+	 public void clickAuto() {
+		 click(auto);
+	 }
+	public void inputZipCodeField(String zipCode) {
+		input(zipCodeField, zipCode);
+	}
+	public void verifyErrorMsgText(String expectedString ) {
+		verifyText(errorMsgText, expectedString);
+		//verifyAttribute(errorMsgText, expectedString, Attribute.INNER_HTML);
+	}
+	public void verifyMaxLength(String expected) {
+		//String actualLength =getAttibuiteValue(zipCodeField, Attribute.max_length);
+		verifyAttribute(zipCodeField, expected, Attribute.MAX_LENGTH);
+	}
+	/*
+	public void verifyHomePageTitleText(WebDriver driver, String expectedTitle) {
+		verifyTitle(driver, expectedTitle);
+		//verifyAttribute(homePageText, expectedTitle, Attribute.INNER_HTML);
+	}
+	*/
+	public void clickGetQuotebt() {
+		click(getQuot);
+	}
+	public void cleanZipcodeField() {
+		clear(zipCodeField);
 	}
 
-	public void clickGetQuote() {
-		try {
-			clickThrowsNoSuchElementException(getQuot);
-		}catch (NoSuchElementException e) {
-			click(getQuoteOverlayElement);
-		}
+	/*
+	public void inputZipcodeField(int zipCode) {
+		input(zipCodeField, String.valueOf(zipCode));
 	}
-	public void inputFName(String first_name) {
-		input(firstName, first_name);
-	}
-	public void inputLName(String last_name) {
-		input(lastName, last_name);
-	}
-	public void inputBirth(String Date_of_birth) {
-		input(dateOfBirth, Date_of_birth);
-	}
+	*/
+	
+	
 
-	public void inputStreetNumberName(String streetNumberName){
-		input(stNumberName, streetNumberName);
+	public void verifyHomePageTitle(String expected) {
+	verifyText(homePageText, expected);	
 	}
-	public void inputAptNumber(String apt_number) {
-		input(apt, apt_number);
-	}
-	public void input_city_name(String city_name) {
-		input(cityName, city_name);
-		
-	}
-	public void click_po_box() {
-     click(poBox);		
-	}
-	
-	public void clickStartMyQuote() {
-		clickOkeyStartMyQuote(okeyStartMyQoute);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 }

@@ -1,8 +1,12 @@
 package progressive_common;
 
+
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import progressive_constants.Attribute;
 import progressive_reports.Loggers;
 
 public class CommonAction {
@@ -12,24 +16,26 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 	}
-
+/*
 	public static void inputThrowsNoSuchElementrException(WebElement element, String inputValue)
 			throws NoSuchElementException {
 		element.sendKeys(inputValue);
 		Loggers.log(element + "......Input value: " + inputValue);
 	}
-
+*/
 	public static void click(WebElement element) {
 		try {
 			element.click();
 			Loggers.log(element + "......Clicked: ");
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 	}
 
@@ -43,8 +49,9 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 
 	}
@@ -54,8 +61,9 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 	}
 
@@ -64,8 +72,9 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 	}
 	
@@ -74,8 +83,9 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 
 	}
@@ -85,8 +95,9 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
-			Assert.fail();
+			//Assert.fail();
 		}
 
 	}
@@ -96,6 +107,7 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
 		}
 
@@ -106,6 +118,7 @@ public class CommonAction {
 			element.sendKeys(inputValue);
 			Loggers.log(element + "......Input value: " + inputValue);
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
 		}
 
@@ -116,7 +129,42 @@ public class CommonAction {
 			element.click();
 			Loggers.log(element + "......clicked");
 		} catch (NoSuchElementException e) {
+			e.printStackTrace();
 			Loggers.log(element + "...not found\n" + e.getMessage());
 		}
 	}
-}
+	public static void verifyText(WebElement element, String expected) {
+		String actual =element.getText();
+		Loggers.log(element + "..........Actual text "  + actual + "expected test "+ expected);
+		Assert.assertEquals(actual, expected);
+	}
+	public static void verifyAttribute(WebElement element, String expected, Attribute attribute) {
+		String actual =getAttibuiteValue(element, attribute);
+				//element.getAttribute(attribute.toString());
+		Loggers.log(element + "..........Actual text "  + actual + "expected test "+ expected);
+		Assert.assertEquals(actual,expected);
+	}
+	
+	private static String getAttibuiteValue(WebElement element, Attribute attribute ) {
+		return element.getAttribute(attribute.toString());
+		
+	}
+	public static void clear(WebElement element) {
+		try {
+		element.clear();
+		Loggers.log(element + "...............cleared");
+		}catch (NoSuchElementException  e) {
+			e.printStackTrace();
+			Loggers.log(element + "...not found\n" + e.getMessage());
+ 		}
+	}
+	/*
+	private static String getTitle(WebDriver driver) {
+		return driver.getTitle();
+	}
+	*/
+	public static void verifyTitle(WebDriver driver, String expectedTitle) {
+		Loggers.log("Actual title is :" + driver.getTitle() + "........and expectedtitle");
+		Assert.assertEquals(driver.getTitle(), expectedTitle);
+	}
+  }

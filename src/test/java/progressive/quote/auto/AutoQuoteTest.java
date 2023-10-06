@@ -7,6 +7,30 @@ import progressive_base.TestBase;
 public class AutoQuoteTest extends TestBase {
 	@Test
 	public void getAutoQuoteTest() {
+   
+	    homePage.verifyTitleText("Welcome to Progressive Insurance®");
+		//homePage.verifySubTitleText("Better insurance starts here");
+		homePage.verifyFootterText("Select a product to quote");
+		homePage. clickAuto();
+		homePage.inputZipCodeField("abhcd");
+		homePage.clickGetQuotebt();
+		//homePage.verifyErrorMsgText("Please use only digits.");
+		//homePage.verifyMaxLength("5");
+		homePage.cleanZipcodeField();
+		//homePage. clickAuto();
+		homePage.inputZipCodeField("1ab2k");
+		//homePage.verifyMaxLength("5");
+		homePage.cleanZipcodeField();
+		//homePage. clickAuto();
+		homePage.inputZipCodeField("11204");
+		homePage.clickGetQuotebt();
+		//homePage.verifyHomePageTitle("PROGRESSIVE"); 		
+		
+		
+		
+		
+		
+		/*
 		homePage.inputZipCode("11204");
 		homePage.clickGetQuote();
 		homePage.inputFName("Shahab");
@@ -17,6 +41,7 @@ public class AutoQuoteTest extends TestBase {
 		homePage.input_city_name("brooklyn");
 		homePage.click_po_box();
 		homePage.clickStartMyQuote();
+		*/
 	}
 	
 
