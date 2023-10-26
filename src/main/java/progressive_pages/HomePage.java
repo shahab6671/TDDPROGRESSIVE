@@ -14,9 +14,11 @@ public class HomePage {
 	public HomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
+	@FindBy(xpath = "//a[@class='logo']")
+	WebElement homePageText;
 	@FindBy(xpath = "//div[@class='intro centered']/h1")
 	WebElement titleText;
-	@FindBy(xpath = "//p[text()='Take a road trip to Savingsville']")
+	@FindBy(xpath = "//p[text()='Take a road trip to Savingsville']") //  subtitle should not dynamic
 	WebElement subTitleText;
 	@FindBy(css = ".copy.h4-style.centered")
 	WebElement footterText;
@@ -24,15 +26,31 @@ public class HomePage {
 	WebElement auto;
 	@FindBy(xpath = "//input[@id='zipCode_overlay']")
 	WebElement zipCodeField;
-	@FindBy(xpath = ("//input[@id='qsButton_mma']"))
+	@FindBy(xpath = "//input[@id='qsButton_overlay']")
 	WebElement getQuot;
 	@FindBy()
 	WebElement maxLength;
 	@FindBy(xpath ="//span[@id='zipCode_overlay-error']")
 	WebElement errorMsgText;
-	
-	@FindBy(xpath = "//a[@class='logo']")
-	WebElement homePageText;
+	@FindBy(id = "NameAndAddressEdit_embedded_questions_list_FirstName")
+	WebElement fName;
+	@FindBy(id= "NameAndAddressEdit_embedded_questions_list_LastName")
+	WebElement lName;
+	@FindBy(id ="NameAndAddressEdit_embedded_questions_list_DateOfBirth")
+	WebElement dateOfBirth;
+	@FindBy(id = "NameAndAddressEdit_embedded_questions_list_MailingAddress")
+	WebElement stNumberName;
+	@FindBy(id = "NameAndAddressEdit_embedded_questions_list_ApartmentUnit")
+	WebElement apt;
+	@FindBy(id ="NameAndAddressEdit_embedded_questions_list_City")
+	WebElement cityName;
+	@FindBy(id ="NameAndAddressEdit_embedded_questions_list_MailingZipType")
+	WebElement poBox;
+	@FindBy(xpath = "//button[text()='Okay, start my quote.']")
+	WebElement okeyStartMyQoute;
+	public void verifyHomePageTitle(String expected) {
+		verifyText(homePageText, expected);	
+		}
 	
 	public void verifyTitleText(String expectedString ) {
           verifyText(titleText, expectedString);		
@@ -74,7 +92,30 @@ public class HomePage {
 	public void cleanZipcodeField() {
 		clear(zipCodeField);
 	}
-
+	public void inputFirstName(String firstName) {
+		input(fName, firstName);
+	}
+	public void inputLastName(String lastName) {
+		input(lName,lastName);
+	}
+	public void inputDOB(String datefBirth ) {
+		input(dateOfBirth,datefBirth);
+	}
+	public void inputStreetNumber(String stName ) {
+		input(stNumberName,stName);
+	}
+	public void inputApt(String aptNumber ) {
+		input(apt,aptNumber);
+	}
+	public void inputCityName(String city ) {
+		input(cityName,city);
+	}
+	 public void clickPoBox() {
+		 click(poBox);
+	 }
+	 public void clickokeyStartMyQoute() {
+		 click(okeyStartMyQoute);
+	 }
 	/*
 	public void inputZipcodeField(int zipCode) {
 		input(zipCodeField, String.valueOf(zipCode));
@@ -83,9 +124,7 @@ public class HomePage {
 	
 	
 
-	public void verifyHomePageTitle(String expected) {
-	verifyText(homePageText, expected);	
-	}
+	
 	
 
 }

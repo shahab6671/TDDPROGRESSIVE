@@ -5,7 +5,6 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="progressive.quote.auto.AutoQuoteTest"/>
-     
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

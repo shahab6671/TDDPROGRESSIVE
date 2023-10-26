@@ -9,25 +9,28 @@ public class AutoQuoteTest extends TestBase {
 	public void getAutoQuoteTest() {
    
 	    homePage.verifyTitleText("Welcome to Progressive Insurance®");
-		//homePage.verifySubTitleText("Better insurance starts here");
+		//homePage.verifySubTitleText("Better insurance starts here"); //sub-title isn't dynamic
 		homePage.verifyFootterText("Select a product to quote");
+		//homePage.verifyHomePageTitle("PROGRESSIVE");
 		homePage. clickAuto();
 		homePage.inputZipCodeField("abhcd");
 		homePage.clickGetQuotebt();
-		//homePage.verifyErrorMsgText("Please use only digits.");
+		homePage.verifyErrorMsgText("Please use only digits.");
 		//homePage.verifyMaxLength("5");
 		homePage.cleanZipcodeField();
-		//homePage. clickAuto();
 		homePage.inputZipCodeField("1ab2k");
-		//homePage.verifyMaxLength("5");
+		homePage.verifyMaxLength("5");
 		homePage.cleanZipcodeField();
-		//homePage. clickAuto();
 		homePage.inputZipCodeField("11204");
 		homePage.clickGetQuotebt();
-		//homePage.verifyHomePageTitle("PROGRESSIVE"); 		
-		
-		
-		
+		homePage.inputFirstName("Roney");
+		homePage.inputLastName("uddin");
+		homePage.inputDOB("01/01/1993");
+		homePage.inputStreetNumber("978 dahill rd");
+		homePage.inputApt("2");
+		homePage.inputCityName("brooklyn");
+		homePage.clickGetQuotebt();
+		homePage.clickokeyStartMyQoute();
 		
 		
 		/*
