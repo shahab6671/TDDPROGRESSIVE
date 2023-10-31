@@ -11,7 +11,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.AfterMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import progressive_constants.KeyConfig;
-import progressive_pages.HomePage;
+import progressive_pages.InputPersonalInformation;
+import progressive_pages.VerifyHomePage;
 import progressive_utils.ReadConfig;
 
 import static progressive_constants.Ibrowser.*;
@@ -22,7 +23,8 @@ public class TestBase {
 
 	public static WebDriver driver;
 	ReadConfig config;
-	protected HomePage homePage;
+	protected VerifyHomePage verifyHomePage;
+	protected InputPersonalInformation information;
 
 	@BeforeSuite
 	public void beforeSuiteSetUp() {
@@ -66,7 +68,8 @@ public class TestBase {
 	}
 
 	public void initObjectClass() {
-		homePage = new HomePage(driver);
+		verifyHomePage = new VerifyHomePage(driver);
+		information =new InputPersonalInformation(driver);
 	}
 
 	@AfterMethod
