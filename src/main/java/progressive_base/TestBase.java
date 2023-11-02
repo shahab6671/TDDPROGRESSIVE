@@ -13,6 +13,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import progressive_constants.KeyConfig;
 import progressive_pages.InputPersonalInformation;
 import progressive_pages.VerifyHomePage;
+import progressive_pages.VerifyList;
 import progressive_utils.ReadConfig;
 
 import static progressive_constants.Ibrowser.*;
@@ -25,6 +26,7 @@ public class TestBase {
 	ReadConfig config;
 	protected VerifyHomePage verifyHomePage;
 	protected InputPersonalInformation information;
+	protected VerifyList list;
 
 	@BeforeSuite
 	public void beforeSuiteSetUp() {
@@ -70,6 +72,7 @@ public class TestBase {
 	public void initObjectClass() {
 		verifyHomePage = new VerifyHomePage(driver);
 		information =new InputPersonalInformation(driver);
+		list = new VerifyList(driver);
 	}
 
 	@AfterMethod

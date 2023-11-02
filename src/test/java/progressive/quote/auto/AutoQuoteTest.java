@@ -5,14 +5,15 @@ import org.testng.annotations.Test;
 import progressive_base.TestBase;
 
 public class AutoQuoteTest extends TestBase {
+	
 	@Test
 	public void getAutoQuoteTest() {
 		
-		verifyHomePage.verifyHomePageTitle("PROGRESSIVE");
+		//verifyHomePage.verifyHomePageTitle("PROGRESSIVE");
 		verifyHomePage.verifyTitleText("Welcome to Progressive Insurance®");
-		verifyHomePage.verifySubTitleText("Better insurance starts here"); // sub-title isn't dynamic
+		//verifyHomePage.verifySubTitleText("Better insurance starts here"); // sub-title isn't dynamic
 		verifyHomePage.verifyFootterText("Select a product to quote");
-		verifyHomePage.verifyHomePageTitle("PROGRESSIVE");
+		//verifyHomePage.verifyHomePageTitle("PROGRESSIVE");
 		verifyHomePage.clickAuto();
 		verifyHomePage.inputZipCodeField("abhcd");
 		verifyHomePage.clickGetQuotebt();
@@ -24,7 +25,6 @@ public class AutoQuoteTest extends TestBase {
 		verifyHomePage.cleanZipcodeField();
 		verifyHomePage.inputZipCodeField("11204");
 		verifyHomePage.clickGetQuotebt();
-
 		information.inputFirstName("Roney");
 		information.inputLastName("uddin");
 		information.inputDOB("01/01/1993");

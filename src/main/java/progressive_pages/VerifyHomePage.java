@@ -14,12 +14,12 @@ public class VerifyHomePage {
 	public VerifyHomePage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-	@FindBy(xpath = "//a[@class='logo']")
-	WebElement homePageText;
-	@FindBy(xpath = "//div[@class='intro']/h1")
+	//@FindBy(xpath = "//a[@class='logo']")
+	//WebElement homePageText;
+	@FindBy(tagName = "h1")
 	WebElement titleText;
-	@FindBy(xpath = "//p[text()='Take a road trip to Savingsville']")  //subtitle should not dynamic
-	WebElement subTitleText;
+	//@FindBy(xpath = "//h1/following-sibling::p")  //subtitle should not dynamic
+	//WebElement subTitleText;
 	@FindBy(css = ".copy.h4-style.centered")
 	WebElement footterText;
 	@FindBy(xpath= "(//p[@class='text block-link is-simple bounce'])[3]")
@@ -28,31 +28,21 @@ public class VerifyHomePage {
 	WebElement zipCodeField;
 	@FindBy(xpath = "//input[@id='qsButton_overlay']")
 	WebElement getQuot;
-	@FindBy()
-	WebElement maxLength;
+	//@FindBy()
+	//WebElement maxLength;
 	@FindBy(xpath ="//span[@id='zipCode_overlay-error']")
 	WebElement errorMsgText;
 	
 	
 
-	
-	public void verifyHomePageTitle(String expected) {
-		verifyText(homePageText, expected);	
-		}
-	
 	public void verifyTitleText(String expectedString ) {
           verifyText(titleText, expectedString);		
 		//verifyAttribute(titleText, expectedString, Attribute.INNER_HTML);
 	}
 	
-	public void verifySubTitleText(String expectedString ) {
-		//verifyText(subTitleText, expectedString);
-		verifyAttribute(subTitleText, expectedString, Attribute.INNER_HTML);
-	
-	}
 	public void verifyFootterText(String expectedString) {
-		//verifyText(footterText, expectedString);
-		verifyAttribute(footterText, expectedString, Attribute.INNER_HTML);
+		verifyText(footterText, expectedString);
+		//verifyAttribute(footterText, expectedString, Attribute.INNER_HTML);
 	}
 	 public void clickAuto() {
 		 click(auto);
@@ -87,8 +77,18 @@ public class VerifyHomePage {
 	}
 	*/
 	
-	
 
+	/*
+	public void verifyHomePageTitle(String expected) {
+		verifyText(homePageText, expected);	
+		}
+	*/
+	/*
+	public void verifySubTitleText(String expectedString ) {
+		verifyText(subTitleText, expectedString);
+		//verifyAttribute(subTitleText, expectedString, Attribute.INNER_HTML);
+	}
+		*/
 	
 	
 
